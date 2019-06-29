@@ -5,9 +5,12 @@
  */
 package ec.edu.tecazuay.ejercicio1.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,9 +26,66 @@ public class Persona implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @OneToMany
+    private Long idPersona;
+
+    public Long getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(Long idPersona) {
+        this.idPersona = idPersona;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Direccion> direcciones;
+
+    private String nombres;
+
+    private String apellidos;
+    private String telefono;
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+    
+    /**
+     * Get the value of apellidos
+     *
+     * @return the value of apellidos
+     */
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    /**
+     * Set the value of apellidos
+     *
+     * @param apellidos new value of apellidos
+     */
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    /**
+     * Get the value of nombres
+     *
+     * @return the value of nombres
+     */
+    public String getNombres() {
+        return nombres;
+    }
+
+    /**
+     * Set the value of nombres
+     *
+     * @param nombres new value of nombres
+     */
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
 
     public List<Direccion> getDirecciones() {
         return direcciones;
@@ -35,37 +95,5 @@ public class Persona implements Serializable {
         this.direcciones = direcciones;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Persona)) {
-            return false;
-        }
-        Persona other = (Persona) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "ec.edu.tecazuay.ejercicio1.modelo.Persona[ id=" + id + " ]";
-    }
     
 }

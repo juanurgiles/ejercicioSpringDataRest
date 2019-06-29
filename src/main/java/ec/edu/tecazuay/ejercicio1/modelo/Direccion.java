@@ -6,6 +6,7 @@
 package ec.edu.tecazuay.ejercicio1.modelo;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,39 +22,47 @@ public class Direccion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idDireccion;
+    private String descripcion;
 
-    public Long getId() {
-        return id;
+    public Long getIdDireccion() {
+        return idDireccion;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdDireccion(Long idDireccion) {
+        this.idDireccion = idDireccion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Direccion)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Direccion other = (Direccion) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Direccion other = (Direccion) obj;
+        if (!Objects.equals(this.idDireccion, other.idDireccion)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripcion, other.descripcion)) {
             return false;
         }
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "ec.edu.tecazuay.ejercicio1.modelo.Direccion[ id=" + id + " ]";
-    }
-    
 }
