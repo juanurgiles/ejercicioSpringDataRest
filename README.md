@@ -6,7 +6,11 @@ http://localhost:8081/h2-console/
  En jdbcurl cambiar por jdbc:h2:mem:AZ
  
  Insertar la depdendencia para AUDITORIA
+ <myxml>
+
 <dependency>
 			<groupId>org.hibernate</groupId>
    <artifactId>hibernate-envers</artifactId>
  </dependency>
+ </myxml>
+
